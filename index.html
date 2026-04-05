@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Douceur — Postres Artesanales</title>
+  <meta name="description" content="Postres artesanales hechos con amor. Cheesecakes, brownies, cupcakes y más." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="header" id="header">
+    <div class="header__inner container">
+
+      <a href="#inicio" class="logo">
+        <span class="logo__name">Douceur</span>
+      </a>
+
+      <nav class="nav" id="nav">
+        <a href="#inicio"   class="nav__link">Inicio</a>
+        <a href="#menu"     class="nav__link">Menú</a>
+        <a href="#nosotros" class="nav__link">Nosotros</a>
+        <a href="#resenas"  class="nav__link">Reseñas</a>
+        <a href="#contacto" class="nav__link">Contacto</a>
+      </nav>
+
+      <div class="header__actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Cambiar tema">
+          <i data-lucide="sun"  class="icon-sun"></i>
+          <i data-lucide="moon" class="icon-moon"></i>
+        </button>
+        <button class="icon-btn cart-trigger" id="cartBtn" aria-label="Carrito">
+          <i data-lucide="shopping-bag"></i>
+          <span class="cart-count" id="cartBadge">0</span>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Overlay para cerrar el menú móvil -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="inicio">
+    <div class="hero__shape"></div>
+    <div class="container hero__grid">
+
+      <!-- Texto -->
+      <div class="hero__copy">
+        <p class="label">Postres artesanales · CDMX</p>
+        <h1 class="hero__h1">
+          Cada postre,<br/>
+          <em>una obra de arte</em>
+        </h1>
+        <p class="hero__sub">
+          Elaborados a mano con ingredientes locales y frescos.<br class="desktop-br"/>
+          Sin conservadores. Sin compromisos.
+        </p>
+        <div class="hero__actions">
+          <a href="#menu" class="btn btn-primary">
+            <i data-lucide="layout-grid"></i>
+            Ver el menú
+          </a>
+          <a href="#nosotros" class="btn btn-ghost">Nuestra historia</a>
+        </div>
+        <div class="hero__stats">
+          <div class="stat"><strong>500+</strong><span>Clientes</span></div>
+          <div class="stat-sep"></div>
+          <div class="stat"><strong>15</strong><span>Variedades</span></div>
+          <div class="stat-sep"></div>
+          <div class="stat"><strong>100%</strong><span>Artesanal</span></div>
+        </div>
+      </div>
+
+      <div class="hero__visual">
+        <div class="hero__circle">
+          <img
+            src="img/hero.png"
+            alt="Pastel artesanal Douceur"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ MENÚ ═══ -->
+  <section class="catalog" id="menu">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="label">Lo que tenemos</p>
+          <h2 class="section-title">Nuestro menú</h2>
+        </div>
+        <p class="section-sub">Elaborado fresco cada día, solo con ingredientes seleccionados.</p>
+      </div>
+
+      <!-- Filtros por categoría -->
+      <div class="cats" id="catBar">
+        <button class="cat active" data-filter="todos">Todos</button>
+        <button class="cat" data-filter="pasteles">Pasteles</button>
+        <button class="cat" data-filter="cupcakes">Cupcakes</button>
+        <button class="cat" data-filter="brownies">Brownies</button>
+        <button class="cat" data-filter="especiales">Especiales</button>
+      </div>
+
+      <!-- Las tarjetas se renderizan desde JS -->
+      <div class="products-grid" id="productsGrid"></div>
+    </div>
+  </section>
+
+
+  <!-- ═══ NOSOTROS ═══ -->
+  <section class="about" id="nosotros">
+    <div class="container about__grid">
+
+      <div class="about__visual">
+        <div class="about__img-wrap">
+          <img
+            src="img/nosotros.jpg"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <!-- Contenido -->
+      <div class="about__content">
+        <p class="label">Nuestra historia</p>
+        <h2 class="section-title">Amor en cada<br/><em>creación</em></h2>
+        <p class="about__text">
+          Douceur nació en 2019 de la pasión de Sofía Reyes por la repostería francesa.
+          Lo que comenzó como un hobby se convirtió en una empresa con corazón, sirviendo
+          a cientos de familias en la Ciudad de México.
+        </p>
+        <p class="about__text">
+          Cada postre se elabora de forma artesanal, sin conservadores, con ingredientes
+          locales de temporada. Creemos que un buen postre no solo endulza el paladar,
+          sino también el alma.
+        </p>
+        <div class="pillars">
+          <div class="pillar">
+            <span class="pillar__ico"><i data-lucide="leaf"></i></span>
+            <div><strong>Sin artificiales</strong><p>Solo ingredientes naturales y frescos</p></div>
+          </div>
+          <div class="pillar">
+            <span class="pillar__ico"><i data-lucide="clock"></i></span>
+            <div><strong>Hecho a pedido</strong><p>Preparado el mismo día de entrega</p></div>
+          </div>
+          <div class="pillar">
+            <span class="pillar__ico"><i data-lucide="award"></i></span>
+            <div><strong>Alta calidad</strong><p>Chocolate belga, frutas de temporada</p></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══ RESEÑAS ═══ -->
+  <section class="reviews" id="resenas">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="label">Lo que dicen</p>
+          <h2 class="section-title">Nuestros clientes</h2>
+        </div>
+      </div>
+      <div class="reviews-grid" id="reviewsGrid"></div>
+    </div>
+  </section>
+
+
+  <!-- ═══ CONTACTO ═══ -->
+  <section class="contact" id="contacto">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="label">Encuéntranos</p>
+          <h2 class="section-title">Contacto</h2>
+        </div>
+        <p class="section-sub">¿Dudas o pedido especial? Escríbenos directamente.</p>
+      </div>
+      <div class="contact__grid">
+
+        <div class="contact__data">
+          <div class="info-item">
+            <span class="info-ico"><i data-lucide="map-pin"></i></span>
+            <div><strong>Ubicación</strong><p>Colonia Roma Norte, CDMX</p></div>
+          </div>
+          <div class="info-item">
+            <span class="info-ico"><i data-lucide="message-circle"></i></span>
+            <div><strong>WhatsApp</strong><p>+52 55 1234 5678</p></div>
+          </div>
+          <div class="info-item">
+            <span class="info-ico"><i data-lucide="clock"></i></span>
+            <div><strong>Horario</strong><p>Lun – Sáb · 9:00 – 19:00 hrs</p></div>
+          </div>
+          <div class="socials">
+            <a href="#" class="soc-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="#" class="soc-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://wa.me/5215512345678" class="soc-btn soc-wa" aria-label="WhatsApp" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact__cta-box">
+          <h3>¿Pedido especial?</h3>
+          <p>Para pasteles de eventos, bodas o pedidos en cantidad, contáctanos directamente.</p>
+          <a href="https://wa.me/5215512345678?text=Hola!%20Quiero%20hacer%20un%20pedido%20especial"
+             class="btn btn-primary" target="_blank" rel="noopener">
+            <i data-lucide="message-circle"></i>
+            Escribir por WhatsApp
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="container footer__top">
+      <div class="footer__brand">
+        <a href="#inicio" class="logo">
+          <span class="logo__name">Douceur</span>
+        </a>
+        <p>Postres artesanales elaborados con dedicación en la Ciudad de México.</p>
+      </div>
+      <div class="footer__nav">
+        <strong>Navegación</strong>
+        <a href="#inicio">Inicio</a>
+        <a href="#menu">Catálogo</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <div class="footer__nav">
+        <strong>Categorías</strong>
+        <a href="#menu">Pasteles</a>
+        <a href="#menu">Cupcakes</a>
+        <a href="#menu">Brownies</a>
+        <a href="#menu">Especiales</a>
+      </div>
+    </div>
+    <div class="footer__bottom container">
+      <p>© 2025 Douceur Postres Artesanales · Hecho con dedicación en México</p>
+    </div>
+  </footer>
+
+
+  <!-- ═══ CARRITO SIDEBAR ═══ -->
+  <div class="drawer-bg" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartSidebar" aria-label="Carrito de compras">
+    <div class="drawer-head">
+      <h2>Carrito</h2>
+      <button class="icon-btn" id="closeCart" aria-label="Cerrar"><i data-lucide="x"></i></button>
+    </div>
+    <div class="drawer-body" id="cartBody">
+      <div class="empty-state" id="cartEmpty">
+        <span class="empty-state__ico"><i data-lucide="shopping-bag"></i></span>
+        <p>Tu carrito está vacío</p>
+        <a href="#menu" class="btn btn-primary" id="goToMenu">Explorar el menú</a>
+      </div>
+      <ul class="cart-list" id="cartItems"></ul>
+    </div>
+    <div class="drawer-foot" id="cartFooter" style="display:none">
+      <div class="totals">
+        <div class="totals__row"><span>Subtotal</span><span id="cartSubtotal">$0</span></div>
+        <div class="totals__row"><span>Envío</span><span class="free">Gratis</span></div>
+        <div class="totals__row totals__row--big"><strong>Total</strong><strong id="cartTotal">$0</strong></div>
+      </div>
+      <button class="btn btn-primary w-full" id="checkoutBtn">
+        <i data-lucide="lock"></i>
+        Confirmar pedido
+      </button>
+    </div>
+  </aside>
+
+
+  <!-- ═══ MODAL CHECKOUT ═══ -->
+  <div class="modal-bg" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="modalHeading">
+    <div class="modal">
+      <div class="modal-head">
+        <h2 id="modalHeading">Confirmar pedido</h2>
+        <button class="icon-btn" id="closeModal" aria-label="Cerrar"><i data-lucide="x"></i></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="order-summary">
+          <h3>Resumen del pedido</h3>
+          <div id="orderSummaryList"></div>
+          <div class="order-summary__total">Total: <strong id="modalTotal">$0</strong></div>
+        </div>
+
+        <form class="checkout-form" id="checkoutForm" novalidate>
+          <h3>Datos de entrega</h3>
+          <div class="field">
+            <label for="clientName">Nombre completo *</label>
+            <input type="text" id="clientName" placeholder="Ej. María García" required />
+            <span class="err" id="nameError"></span>
+          </div>
+          <div class="field">
+            <label for="clientPhone">Teléfono / WhatsApp *</label>
+            <input type="tel" id="clientPhone" placeholder="10 dígitos" required />
+            <span class="err" id="phoneError"></span>
+          </div>
+          <div class="field">
+            <label for="clientAddress">Dirección de entrega *</label>
+            <input type="text" id="clientAddress" placeholder="Calle, número, colonia, ciudad" required />
+            <span class="err" id="addressError"></span>
+          </div>
+          <div class="field">
+            <label for="clientNotes">Notas adicionales</label>
+            <textarea id="clientNotes" rows="3" placeholder="Instrucciones, alergias, dedicatorias..."></textarea>
+          </div>
+
+          <h3>Recibir comprobante como</h3>
+          <div class="methods">
+            <label class="method">
+              <input type="radio" name="orderMethod" value="whatsapp" checked />
+              <span class="method__body">
+                <span class="method__ico"><i data-lucide="message-circle"></i></span>
+                <span><strong>WhatsApp</strong><small>Confirmar por chat</small></span>
+              </span>
+            </label>
+            <label class="method">
+              <input type="radio" name="orderMethod" value="pdf" />
+              <span class="method__body">
+                <span class="method__ico"><i data-lucide="file-text"></i></span>
+                <span><strong>PDF</strong><small>Descargar comprobante</small></span>
+              </span>
+            </label>
+            <label class="method">
+              <input type="radio" name="orderMethod" value="both" />
+              <span class="method__body">
+                <span class="method__ico"><i data-lucide="layers"></i></span>
+                <span><strong>Ambos</strong><small>WhatsApp + PDF</small></span>
+              </span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-full" id="submitOrder">
+            <i data-lucide="check"></i>
+            Confirmar pedido
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Notificación toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
